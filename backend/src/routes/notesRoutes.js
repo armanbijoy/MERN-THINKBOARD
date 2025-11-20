@@ -9,7 +9,7 @@ router.post('/', createNotes)
 
 
 
-router.get('/:id', updateNote )
+router.put('/:id', updateNote )
 
 router.delete('/:id',deleteNote )
 

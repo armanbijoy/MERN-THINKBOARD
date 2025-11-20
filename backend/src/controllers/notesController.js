@@ -18,14 +18,30 @@ export const createNotes = async (req, res) => {
 
    await newNote.save()
    res.status(201).json({message:"Note Created Successfully"})
+
  }catch(err){
    console.log(err)
  }
 };
 
 
-export const updateNote = (req, res) => {
-  res.status(201).send("Note updated Successfullyt");
+export const updateNote = async(req, res) => {
+
+   try{
+      const {title, content} = req.body
+     const updatedNote =  await Note.findByIdAndUpdate(req.params.id, {title, content})
+
+     if(!updatedNote) return res.status(404).json({message:'Data not found'})
+
+      res.status(200).json(updateNote)
+
+   }catch(err){
+      console.log(err)
+   }
+
+
+
+   
 };
 
 export const deleteNote = (req, res) => {
